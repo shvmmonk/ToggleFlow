@@ -1,11 +1,5 @@
 zerops:
-  - setup: db
-    hostname: db
-    type: postgresql@16
-    mode: NON_HA
-    priority: 1
-
-  - setup: app
+  - setup: api
     build:
       base: java@17
       buildCommands:
