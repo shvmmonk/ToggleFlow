@@ -13,8 +13,9 @@ zerops:
         - port: 8080
           httpSupport: true
       envVariables:
-        SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/db
-        SPRING_DATASOURCE_USERNAME: ${db_user}
-        SPRING_DATASOURCE_PASSWORD: ${db_password}
-        SPRING_JPA_HIBERNATE_DDL_AUTO: update
+        JDBC_DATABASE_URL: jdbc:postgresql://db:5432/db
+        DB_USER: ${db_user}
+        DB_PASS: ${db_password}
+        DB_DRIVER: org.postgresql.Driver
+        JPA_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       start: java -jar feature-flag-service/target/feature-flag-service-1.0.0.jar
