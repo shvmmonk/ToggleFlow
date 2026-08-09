@@ -1,0 +1,24 @@
+zerops:
+  - setup: api
+    build:
+      base: java@21
+      buildCommands:
+        - mvn clean package -DskipTests
+      deployFiles: target/*.jar
+    run:
+      base: java@21
+      ports:
+        - port: 8080
+          httpSupport: true
+      envVariables:
+        DB_HOST: ${db_hostname}
+        DB_PORT: 5432
+        DB_NAME: ${db_dbName}
+        DB_USER: ${db_user}
+        DB_PASS: ${db_password}
+        JDBC_DATABASE_URL: jdbc:postgresql://${db_hostname}:5432/${db_dbName}
+        DB_DRIVER: org.postgresql.Driver
+        JPA_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+        REDIS_HOST: ${cache_hostname}
+        REDIS_PORT: 6379
+      start: java -jar target/*.jar

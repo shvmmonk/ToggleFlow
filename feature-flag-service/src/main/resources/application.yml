@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: feature-flag-service
+  datasource:
+    url: ${JDBC_DATABASE_URL:jdbc:h2:mem:feature_flags;DB_CLOSE_DELAY=-1;MODE=PostgreSQL}
+    username: ${DB_USER:sa}
+    password: ${DB_PASS:}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    database-platform: ${JPA_DIALECT:org.hibernate.dialect.H2Dialect}
+  sql:
+    init:
+      mode: never
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 500ms
+      connect-timeout: 500ms
+
+server:
+  port: ${PORT:8080}
+
+logging:
+  level:
+    com.featureflags: INFO
+    org.springframework.data.redis: WARN

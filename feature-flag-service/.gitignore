@@ -1,0 +1,19 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!target/classes/static/
+
+### Optionals ###
+*.log
+*.tmp
+hs_err_pid*
+replay_pid*
+
+### IDE ###
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
