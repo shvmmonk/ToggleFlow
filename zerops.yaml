@@ -17,4 +17,4 @@ zerops:
         SPRING_DATASOURCE_USERNAME: ${db_user}
         SPRING_DATASOURCE_PASSWORD: ${db_password}
         SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      start: java -jar feature-flag-service-1.0.0.jar
+      start: java -jar feature-flag-service/target/feature-flag-service-1.0.0.jar
