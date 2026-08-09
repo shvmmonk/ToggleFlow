@@ -1,0 +1,26 @@
+zerops:
+  - setup: db
+    hostname: db
+    type: postgresql@16
+    mode: NON_HA
+    priority: 1
+
+  - setup: app
+    build:
+      base: java@17
+      buildCommands:
+        - cd feature-flag-service && ./mvnw clean package -DskipTests
+      deployFiles: feature-flag-service/target/feature-flag-service-1.0.0.jar
+      cache: feature-flag-service/~/.m2
+
+    run:
+      base: java@17
+      ports:
+        - port: 8080
+          httpSupport: true
+      envVariables:
+        SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/db
+        SPRING_DATASOURCE_USERNAME: ${db_user}
+        SPRING_DATASOURCE_PASSWORD: ${db_password}
+        SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      start: java -jar feature-flag-service-1.0.0.jar
